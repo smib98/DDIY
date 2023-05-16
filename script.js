@@ -389,11 +389,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
+  document.getElementById("code-editor-textarea").value += "hello\n";
+
+  
   addEventListener("mousedown", beginTouch, false);
   addEventListener("mousemove", checkTouch, false);
   addEventListener("mouseup", doneTouch, false);
   addEventListenerMulti("touchstart", beginTouch, false, ".block");
 });
+
+
 
 let isPropertiesPaneVisible = true;
 let isLeftCardVisible = true;
@@ -442,16 +447,8 @@ rightSwitch.addEventListener('click', function() {
     codearea.style.border = 'none';
     codearea.style.outline = 'none';
     codeEditor.appendChild(codearea);
-    codeEditorCM = CodeMirror.fromTextArea(codearea, {
-      lineNumbers: true,
-      mode: "javascript",
-      theme: "default",
-    });
   } else {
     codeEditorDiv.style.display = 'block';
-    if (codeEditorCM) {
-      codeEditorCM.refresh();  // necessary to keep CodeMirror instance updated
-    }
   }
   document.getElementById('closecard').style.display = 'none';
   if (codeEditorCM) {
