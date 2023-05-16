@@ -398,87 +398,58 @@ document.addEventListener("DOMContentLoaded", function () {
   addEventListenerMulti("touchstart", beginTouch, false, ".block");
 });
 
-
-
-let isPropertiesPaneVisible = true;
-let isLeftCardVisible = true;
-let codeEditorCM;
 var rightSwitch = document.getElementById('rightswitch');
 var leftSwitch = document.getElementById('leftswitch');
-
 rightSwitch.addEventListener('click', function() {
-  document.getElementById("canvas").style.display = "none";
   rightSwitch.style.backgroundColor = '#fbfbfb';
   rightSwitch.style.color = '#393c44';
   leftSwitch.style.backgroundColor = '#ffffff';
   leftSwitch.style.color = '#a3a3a3';
-
-  let propertiesPane = document.getElementById("properties");
-  isPropertiesPaneVisible = propertiesPane.className === "expanded";
-  propertiesPane.className = "";
-
   var closecard = document.getElementById('closecard');
   var leftcard = document.getElementById('leftcard');
-  isLeftCardVisible = leftcard.style.left !== '-' + leftcard.offsetWidth + 'px';
-  if (isLeftCardVisible) {
-    leftcard.style.left = '-' + leftcard.offsetWidth + 'px';
-    closecard.getElementsByTagName('img')[0].src = 'assets/closeright.svg';
-    closecard.style.display = 'none';
-  }
-
+  var leftcardWidth = leftcard.offsetWidth;
+  var leftcardLeft = leftcard.offsetLeft;
+  leftcard.style.left = '-' + leftcardWidth + 'px';
+  closecard.getElementsByTagName('img')[0].src = 'assets/closeright.svg';
+  closecard.style.display = 'none';
+  
   var codeEditorDiv = document.getElementById('codeEditorDiv');
-  if (!codeEditorDiv) {
-    var navigation = document.getElementById('navigation');
-    var height = navigation.offsetHeight;
-    var codeEditor = document.createElement('div');
-    codeEditor.style.backgroundColor = 'white';
-    codeEditor.id = 'codeEditorDiv';
-    codeEditor.style.width = '100%';
-    codeEditor.style.height = 'calc(100vh - ' + height + 'px)';
-    codeEditor.zIndex = '9999';
-    document.body.appendChild(codeEditor);
-    codeEditor.style.position = 'absolute';
-    codeEditor.style.bottom = '0px';
-    var codearea = document.createElement('textarea');
-    codearea.id = 'codearea';
-    codearea.name = 'codearea';
-    codearea.style.width = '100%';
-    codearea.style.height = '100%';
-    codearea.style.border = 'none';
-    codearea.style.outline = 'none';
-    codeEditor.appendChild(codearea);
+  if (codeEditorDiv) {
+	console.log("exists");
+	codeEditorDiv.style.display = 'block';
   } else {
-    codeEditorDiv.style.display = 'block';
+	console.log("doesn't exist");
+	var navigation = document.getElementById('navigation');
+	var height = navigation.offsetHeight;
+	var codeEditor = document.createElement('div');
+	codeEditor.style.backgroundColor = 'white';
+	codeEditor.id = 'codeEditorDiv';
+	codeEditor.style.width = '100%';
+	codeEditor.style.height = (window.innerHeight - height) + 'px';
+	codeEditor.zIndex = '9999';
+	document.body.appendChild(codeEditor);
+	codeEditor.style.position = 'absolute';
+	codeEditor.style.bottom = '0px';
+	var codearea = document.createElement('textarea');
+	codearea.id = 'codearea';
+	codearea.name = 'codearea';
+	codearea.rows = 25;
+	codearea.style.width = '100%';
+	codearea.style.height = '100%';
+	codearea.style.border = 'none';
+	codearea.style.outline = 'none';
+	codeEditor.appendChild(codearea);
   }
-  document.getElementById('closecard').style.display = 'none';
-  if (codeEditorCM) {
-    codeEditorCM.focus();
-  }
-});
 
+});
 leftSwitch.addEventListener('click', function() {
-  document.getElementById("canvas").style.display = "block";
   leftSwitch.style.backgroundColor = '#fbfbfb';
   leftSwitch.style.color = '#393c44';
   rightSwitch.style.backgroundColor = '#ffffff';
   rightSwitch.style.color = '#a3a3a3';
   closecard.style.display = 'block';
-
-  let propertiesPane = document.getElementById("properties");
-  if (isPropertiesPaneVisible) {
-    propertiesPane.className = "expanded";
-  }
-
-  var leftcard = document.getElementById('leftcard');
-  if (isLeftCardVisible) {
-    leftcard.style.left = '0px';
-    closecard.getElementsByTagName('img')[0].src = 'assets/closeleft.svg';
-    closecard.style.display = 'block';
-  }
-
-  var codeEditorDiv = document.getElementById('codeEditorDiv');
-  if (codeEditorDiv) {
-    codeEditorDiv.style.display = 'none';
-  }
-  document.getElementById('closecard').style.display = 'block';
+  codeEditorDiv.style.display = 'none';
+  leftcard.style.left = '0px';
+  closecard.getElementsByTagName('img')[0].src = 'assets/closeleft.svg';
+  closecard.style.display = 'block';
 });

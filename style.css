@@ -350,13 +350,7 @@ html {
   outline: none;
   resize: none;
 }
-.CodeMirror {
-  height: 100% !important;
-  overflow: auto !important;
-}
-.CodeMirror-scroll {
-  overflow: auto !important;
-}
+
 
 #leftcard {
   width: 363px;
