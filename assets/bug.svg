@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>action-svg</title>
+	<defs>
+		<image width="48" height="48" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABl0lEQVR4nO2ZvUoDQRCAP8Qf0DeIIAg2VrYiCnZqIARExEKwE8QHsNBCSKNo57uIWNkEfQO1UbBSkVQKSTRZWVjhXFa983b3VtwPpsnOkPkuN7tcDiKRiE3GLeUUwhbwBqx8k7MItIE9AmMXECpkg1VDzgLQTOQFIzGhrrxIRAsoJ3LK6rNkjqyRtUGwCnQMEs8q9OY7qiYo1gwSpugC6wRIP3CdQkDm9BEgmyma/4gNAuQig8A5AfKSQUAOdjCUgJoazrQCXVVTKrp5ub83MjSuR0M7L7wyrZ2sv40WMOu7+VHg0ULzQsUTMGa7SRFYZKbohkUU4I/fQjq9wEOOL0xbdwf04ID5nFcsS+2MC4FDjwI1FwJnHgVObTRse+i8D7GIAp+Jv0BerjzOwCUOOPEocOxC4MCjwL4LgapHgYqNhuM2qhG30X93C33FsHoIty3QAEbwhHxZ8WpRoA3M4ZnlH/4XSivQBJYoiCngNofADTBJwQwBO4bnZZ3k2j2wDQwSEAPqBD0C6ob1ulqrqJchkUiE/LwDUyssYascnHUAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="icons8-bug-48" href="#img1" transform="matrix(.542,0,0,.542,0,0)"/>
+</svg>

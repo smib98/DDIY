@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>action-svg</title>
+	<defs>
+		<image  width="26" height="26" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAAXNSR0IB2cksfwAAAJxQTFRFIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoE9uzwgAAADR0Uk5TAB6e8IsGl/z/+JYWjLy/xfV3eIUX/iW0terVQiDp3887AdSAQL2y9Gr6kAvKn3A6X5XogScfw20AAAC0SURBVHictdHZDoIwFATQIqBXoBcUioi4gqLi7v//mw2UpAg1vDhPk540maaE9Ik20HVD6xJzOAIYW2bj0HYoIroeTKbgubxSPxDkMKgShqIwQxAVBzCL6kYFIbSC3TSPVRQvkqVMKywDsI42W3snU1o1gIy/ZQ8KSg7qGT8Wqim3jqybTueguMh0zcoA3O4FeeSKhQUXmTAtw6+nz1e/hbRN9af47FvYW1BgUGyEvm3yh3wAXecUp0X6upAAAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="icons8-test-passed-48" href="#img1" x="0" y="0"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>action-svg</title>
+	<defs>
+		<image  width="26" height="26" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAAXNSR0IB2cksfwAAAGZQTFRFIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoKsrygQAAACJ0Uk5TAByPvL+weAb+/1C9cEDPfYBgHTs+KAMj2vvmVO9VII53tyLqooYAAACHSURBVHicrdLZDoMgEIVhZKkcC4hWbWu1y/u/ZGNiJoMJN8T/jnwJywQhCquk0ixzqYmkRZJtiK5wnhXQEml4vr9GLKAu+pT6Gz9vGCei++OZXHJ+ETks/G0BhihC8/P8vjydDEKXoXW2MUPTOLwztHU6tQh8vA6KqDl+gg9R/f3x8SpZicL+4wYKra8cFk0AAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="icons8-virtual-machine-48" href="#img1" x="0" y="0"/>
+</svg>

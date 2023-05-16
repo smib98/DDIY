@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>action-svg</title>
+	<defs>
+		<image  width="26" height="26" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAAAXNSR0IB2cksfwAAAMBQTFRFIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzoIXzowUqY6gAAAEB0Uk5TAAIfjbqYO57R/+U60BadjLeLiW0cqMwdzqYBohIq54C/GZr88gYy/eQHTLbw6EkDctzdkSHpQM1U4sDbNoq5lymEd0oAAADSSURBVHicndLXDoIwFIDhggyPoGDBhQO34N57vP9b2R4SMFAv9Fz95UtIWyDk75HknKJqEqamKzk5IS0PAAUDs8DSLMakA59SklZMCq4VnjamHVMZ15QnxXRicitsWXV51uosG16yD68J+VaU7Q7QDyHEh24Uvf5gWCNZGo2pOQkckqFwOpsDLJarNFXXG7aB7W6fviqfb/lQOnppQDqdw+xzpIshCYXRVfAuNp5rw+0utI+LSk90vQ8RRR/lKSIV6SUi/AECQ0SSbD1f387147wBa/gPE/IYnr4AAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="icons8-code-fork-48" href="#img1" x="0" y="0"/>
+</svg>

@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26 26" width="26" height="26">
+	<title>action-svg</title>
+	<defs>
+		<image width="48" height="48" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAABRUlEQVR4nO2ZTU7DMBCFP2EuAFvadS/EBiEQvVsXxarUDSpH4O8qBZEs2LAYhDSRoigJjUNru5pPeqvEznv2RB7JYBwfp8AceAO+VK/AnT5LmnM1Kx16Ac5IlBPgucd8pSd9NzludzBf6eZQpqbACigHmKv0AFwAE2ATML4E1sBsjPn3gA9XmjTmCp3nQ8cPZjXio/8ZQAAfEiCkbOraaIhf848j5ypCAkhiGkxsw2IBiL/qklMJeeAK+M4xgK81epcdIZINsGzpUq9zCeBbzDtgsc8AY+fpw3WYzyKA6zGffAD3h/mkA7gdzCf7E8sAWQCxHeC4S8hbL9TgUCu/tF4o8kFWx3qhWDvgrBdqIfbJK7kdZGIBGmRfQmUCpkX1GRJgnYBxUd2HBJjp5UJs89vGXcMgptrmFhGMF7ryweYNwzDYOz8v/12OWQPcMgAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="icons8-test-passed-48" href="#img1" transform="matrix(.542,0,0,.542,0,0)"/>
+</svg>
