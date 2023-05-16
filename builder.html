@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>DDIY Automation</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/alyssaxuu/flowy/flowy.min.css'><link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.62.0/mode/javascript/javascript.min.js"></script>
+
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="navigation">
+  <div id="leftside">
+    <div id="details">
+      <div id="back"><img src="assets/arrow.svg"></div>
+      <div id="names">
+        <p id="title">Your Workflow</p>
+        <p id="subtitle">Project name</p>
+      </div>
+    </div>
+  </div>
+  <div id="centerswitch">
+    <div id="leftswitch">Diagram view</div>
+    <div id="rightswitch">Code editor</div>
+  </div>
+  <div id="buttonsright">
+    <div id="discard">Discard</div>
+    <div id="publish">Publish</div>
+  </div>
+</div>
+<div id="leftcard">
+  <div id="closecard">
+    <img src="assets/closeleft.svg">
+  </div>
+  <p id="header">Blocks</p>
+  <div id="search">
+    <img src="assets/search.svg">
+    <input type="text" placeholder="Search blocks">
+  </div>
+  <div id="subnav">
+    <div id="actions" class="navactive side">Actions</div>
+    <div id="conditionals" class="navdisabled side">Conditionals</div>
+    <div id="ai" class="navdisabled side">AI</div>
+    <div id="logging" class="navdisabled side">Logging</div>
+    <div id="imports" class="navdisabled side">Imports</div>
+    <div id="variables" class="navdisabled side">Variables</div>
+  </div>
+  <div id="blocklist">
+    
+  </div>
+  
+</div>
+<div id="propwrap">
+  <div id="properties">
+    <div id="close">
+      <img src="assets/close.svg">
+    </div>
+    <p id="header2">Properties</p>
+    <div id="propswitch">
+      <div id="dataprop">Data</div>
+      <div id="alertprop">Alerts</div>
+      <div id="logsprop">Logs</div>
+    </div>
+    <div id="proplist">
+      <p class="inputlabel">Select database</p>
+      <div class="dropme">Database 1 <img src="assets/dropdown.svg"></div>
+      <p class="inputlabel">Check properties</p>
+      <div class="dropme">All<img src="assets/dropdown.svg"></div>
+      <div class="checkus"><img src="assets/checkon.svg">
+        <p>Log on successful performance</p>
+      </div>
+      <div class="checkus"><img src="assets/checkoff.svg">
+        <p>Give priority to this block</p>
+      </div>
+    </div>
+    <div id="divisionthing"></div>
+    <div id="removeblock">Delete blocks</div>
+  </div>
+</div>
+
+<div id="canvas">
+</div>
+<div id="code-editor-container" style="display: none;">
+  <textarea id="code-editor-textarea" style="display: none;"></textarea>
+</div>
+<!-- partial -->
+  <script src='https://cdn.jsdelivr.net/gh/alyssaxuu/flowy/flowy.min.js'></script><script  src="./script.js"></script>
+<script>
+var closecard = document.getElementById('closecard');
+var leftcard = document.getElementById('leftcard');
+var leftcardWidth = leftcard.offsetWidth;
+closecard.addEventListener('click', function() {
+  var leftcard = document.getElementById('leftcard');
+  var leftcardWidth = leftcard.offsetWidth;
+  var leftcardLeft = leftcard.offsetLeft;
+  if (leftcardLeft < 0) {
+    leftcard.style.left = '0px';
+    closecard.getElementsByTagName('img')[0].src = 'assets/closeleft.svg';
+  } else {
+    leftcard.style.left = '-' + leftcardWidth + 'px';
+    closecard.getElementsByTagName('img')[0].src = 'assets/closeright.svg';}
+});
+//search functionality
+var search = document.getElementById('search');
+var searchInput = search.getElementsByTagName('input')[0];
+var blocktitles = document.getElementsByClassName('blocktitle');
+var triggers = document.getElementById('actions');
+var actions = document.getElementById('ai');
+var loggers = document.getElementById('logging');
+var imports = document.getElementById('imports');
+var variables = document.getElementById('variables');
+var conditionals = document.getElementById('conditionals');
+search.addEventListener('keyup', function() {
+  if (searchInput.value.length > 2) {
+    for (var i = 0; i < blocktitles.length; i++) {
+      var blocktitle = blocktitles[i];
+      var parent = blocktitle.parentNode;
+      var parent = parent.parentNode;
+      var parent = parent.parentNode;
+      if (blocktitle.innerHTML.toLowerCase().indexOf(searchInput.value.toLowerCase()) > -1) {
+        parent.style.display = 'block';
+      } else {
+      parent.style.display = 'none';
+    }
+  }
+} else {
+  for (var i = 0; i < blocktitles.length; i++) {
+    var blocktitle = blocktitles[i];
+    var parent = blocktitle.parentNode;
+    var parent = parent.parentNode;
+    var parent = parent.parentNode;
+    parent.style.display = 'block';
+  }
+}
+});
+triggers.addEventListener('click', function() {
+  searchInput.value = '';
+});
+actions.addEventListener('click', function() {
+  searchInput.value = '';
+});
+loggers.addEventListener('click', function() {
+  searchInput.value = '';
+});
+//add shaddow to blocks
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    for (var i = 0; i < mutation.addedNodes.length; i++) {
+		var blocks = document.getElementsByClassName('blockelem noselect block');
+		for (var i = 0; i < blocks.length; i++) {
+		blocks[i].style.boxShadow = '0 0 5px #888';
+		}
+    }
+  });
+});
+observer.observe(document.body, { childList: true });
+//mouse pointer
+var dataprop = document.getElementById('dataprop');
+var alertprop = document.getElementById('alertprop');
+var logsprop = document.getElementById('logsprop');
+dataprop.addEventListener('mouseover', function() {
+  dataprop.style.cursor = 'pointer';
+});
+alertprop.addEventListener('mouseover', function() {
+  alertprop.style.cursor = 'pointer';
+});
+logsprop.addEventListener('mouseover', function() {
+  logsprop.style.cursor = 'pointer';
+});
+
+
+
+document.getElementById('code-editor-textarea').addEventListener('input', function() {
+  var code = this.value;
+  // Now you can do something with the code...
+});
+
+window.onload = function() {
+  var projectName = localStorage.getItem('projectName');
+  var subtitleElement = document.getElementById('subtitle');
+  subtitleElement.textContent = projectName;
+  var subtitleElement = document.getElementById("subtitle");
+  if (subtitleElement.textContent === "") {
+    window.location.href = "index.html";
+  }
+  document.getElementById("actions").click();
+};
+
+document.getElementById('back').addEventListener('click', function() {
+    localStorage.removeItem('projectName');
+    window.location.href = 'index.html';
+});
+
+
+</script>
+</body>
+</html>

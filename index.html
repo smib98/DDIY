@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>DDIY Automation</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+  <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/alyssaxuu/flowy/flowy.min.css'><link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div id="navigation">
+  <div id="leftside">
+    <div id="details">
+      <div id="names">
+        <p id="title">Login</p>
+        <p id="subtitle">Automation Engineer</p>
+      </div>
+    </div>
+  </div>
+  <div id="centerswitch1">
+    <p id="title1">Automation Anywhere</p>
+  </div>
+  <div id="buttonsright">
+    <div id="create" onclick="showPopup()">Create</div>
+    <div id="delete">Delete</div>
+  </div>
+</div>
+
+<form id="popup" class="hidden" onsubmit="event.preventDefault(); createProject();">
+  <div id="close-button" style="position: absolute; right: 10px; top: 10px; cursor: pointer;">X</div>
+  <label>Project Name:</label><input type="text" id="project-name" maxlength="25" /><br/>
+  <label>Project Purpose:</label><textarea id="project-purpose" maxlength="60" onkeydown="if(event.keyCode === 13){ event.preventDefault(); document.getElementById('popup').dispatchEvent(new Event('submit')); }"></textarea><br/>
+  <label>Project For Team:</label>
+  <select id="project-team">
+    <option value="team1">Team 1</option>
+    <option value="team2">Team 2</option>
+    <!-- Add more options as needed -->
+  </select><br/>
+  <button>Create</button>
+</form>
+
+
+
+
+<div id="grid-container">
+  <!-- These divs will be generated in JavaScript -->
+</div>
+
+</body>
+<script>
+function setUsername() {
+  const fullName = prompt("Please enter your full name:");
+  if (fullName) {
+    localStorage.setItem("username", fullName);
+    const titleElement = document.getElementById("title");
+    titleElement.innerText = fullName;
+    titleElement.style.color = "#393c44";
+  }
+}
+
+const titleElement = document.getElementById("title");
+
+titleElement.addEventListener("mouseover", function() {
+  if (titleElement.textContent === "Login") {
+    titleElement.style.cursor = "pointer";
+  }
+});
+
+if (localStorage.getItem("username") !== null) {
+  const username = localStorage.getItem("username");
+  titleElement.innerText = username;
+} else {
+  titleElement.style.color = "blue";
+  titleElement.addEventListener("click", function () {
+    if (this.innerText === "Login") {
+      setUsername();
+    }
+  });
+}
+
+document.body.addEventListener('dblclick', function(event) {
+  if (!event.target.closest('.grid-item')) {
+    var gridItems = document.getElementsByClassName('grid-item');
+    for (var i = 0; i < gridItems.length; i++) {
+      gridItems[i].classList.remove('active');
+    }
+  }
+});
+
+document.getElementById('delete').addEventListener('click', function() {
+  var gridItems = document.getElementsByClassName('grid-item');
+  for (var i = gridItems.length - 1; i >= 0; i--) {
+    if(gridItems[i].classList.contains('active')) {
+      // Remove project from local storage
+      var projectName = gridItems[i].querySelector('.project-name').textContent;
+      var projects = JSON.parse(localStorage.getItem('projects'));
+      for (var j = 0; j < projects.length; j++) {
+        if (projects[j].projectName === projectName) {
+          projects.splice(j, 1);
+          break;
+        }
+      }
+      localStorage.setItem('projects', JSON.stringify(projects));
+      
+      // Remove grid item from DOM
+      gridItems[i].remove();
+    }
+  }
+});
+
+
+document.getElementById('close-button').addEventListener('click', function() {
+  document.getElementById('popup').classList.add('hidden');
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && !document.getElementById('popup').classList.contains('hidden')) {
+    document.getElementById('popup').classList.add('hidden');
+  }
+});
+
+document.addEventListener('keydown', function(event) {
+  if (event.ctrlKey && event.key === 'c') {
+    showPopup();
+  }
+});
+
+function showPopup() {
+  document.getElementById('popup').classList.remove('hidden');
+  document.getElementById('project-name').focus();
+}
+
+function createProject() {
+  event.preventDefault();
+
+  var projectName = document.getElementById('project-name').value.slice(0, 20);
+  var projectPurpose = document.getElementById('project-purpose').value.slice(0, 40);
+  var projectTeam = document.getElementById('project-team').value;
+
+  var gridItem = createGridItem(projectName, projectPurpose, projectTeam);
+
+  document.getElementById('grid-container').appendChild(gridItem);
+  document.getElementById('popup').classList.add('hidden');
+  document.getElementById('project-name').value = '';
+  document.getElementById('project-purpose').value = '';
+  document.getElementById('project-team').value = 'team1';
+
+  // Save the project data to local storage
+  var projects = JSON.parse(localStorage.getItem('projects')) || [];
+  projects.push({ projectName, projectPurpose, projectTeam });
+  localStorage.setItem('projects', JSON.stringify(projects));
+}
+
+function createGridItem(projectName, projectPurpose, projectTeam) {
+  var gridItem = document.createElement('div');
+  gridItem.className = 'grid-item';
+
+  // Create the button
+  var openButton = document.createElement('button');
+  openButton.textContent = 'Open';
+  openButton.style.position = 'absolute';
+  openButton.style.top = '5px';
+  openButton.style.right = '5px';
+  openButton.style.backgroundColor = '#3480eb';
+  openButton.style.color = 'white';
+  openButton.style.borderRadius = '5px';
+  openButton.style.border = 'none';
+  openButton.style.padding = '5px 10px';
+
+  // Add event listener for click
+  openButton.addEventListener('click', function() {
+    // Save the project name to localStorage
+    localStorage.setItem('projectName', projectName);
+    // Navigate to builder.html
+    window.location.href = 'builder.html';
+  });
+
+  // Append the button to the grid item
+  gridItem.appendChild(openButton);
+
+  var projectTitle = document.createElement('p');
+  projectTitle.className = 'project-name';
+  projectTitle.textContent = projectName;
+  gridItem.appendChild(projectTitle); 
+
+  var projectDescription = document.createElement('p');
+  projectDescription.className = 'project-description';
+  projectDescription.textContent = projectPurpose;
+  gridItem.appendChild(projectDescription);
+
+  var projectDate = document.createElement('p');
+  var date = new Date();
+  projectDate.className = 'project-date';
+  projectDate.textContent = date.toDateString();
+  gridItem.appendChild(projectDate);
+
+  gridItem.style.display = 'block';
+
+  // Add event listener for double click
+  gridItem.addEventListener('dblclick', function() {
+    this.classList.toggle('active');
+  });
+
+  return gridItem;
+}
+
+function loadProjects() {
+  // Load the projects from local storage
+  var projects = JSON.parse(localStorage.getItem('projects')) || [];
+
+  for (var i = 0; i < projects.length; i++) {
+    var project = projects[i];
+    var gridItem = createGridItem(project.projectName, project.projectPurpose, project.projectTeam);
+    document.getElementById('grid-container').appendChild(gridItem);
+  }
+}
+
+// Call the loadProjects function when the page loads
+document.addEventListener('DOMContentLoaded', function(event) { 
+  loadProjects();
+});
+</script>
+
+
+
+</html>
