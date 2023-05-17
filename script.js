@@ -5,6 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
   
   flowy(document.getElementById("canvas"), drag, release, snapping);
   
+  if (localStorage.getItem('projectName')) {
+    var key = localStorage.getItem('projectName');
+    if (localStorage.getItem(key)) {
+      var flowchartData = JSON.parse(localStorage.getItem(key));
+      flowy.import(flowchartData);
+    }
+  }
+
   function addEventListenerMulti(type, listener, capture, selector) {
     var nodes = document.querySelectorAll(selector);
     for (var i = 0; i < nodes.length; i++) {
@@ -203,7 +211,13 @@ document.addEventListener("DOMContentLoaded", function () {
       default:
         break;
     }
-
+    var blockName = drag.querySelector(".blockyname").textContent;
+    var doc = myCodeMirror.getDoc();
+    var lastLine = doc.lastLine();
+    var lastLineContent = doc.getLine(lastLine);
+    var pos = { line: lastLine, ch: lastLineContent.length };
+    doc.replaceRange(blockName + '\n', pos);
+    drag.classList.add("snapped");
     return true;
   }
   function drag(block) {
@@ -267,7 +281,7 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         {
           id: 42,
-          title: "AI 1",
+          title: "AI 2",
           desc: "Dummy Description 2",
           icon: "database"
         }
@@ -389,13 +403,75 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     }
   };
-  document.getElementById("code-editor-textarea").value += "hello\n";
 
   
   addEventListener("mousedown", beginTouch, false);
   addEventListener("mousemove", checkTouch, false);
   addEventListener("mouseup", doneTouch, false);
   addEventListenerMulti("touchstart", beginTouch, false, ".block");
+});
+
+
+
+var code = `# Code created using DDIY (Dont Do It Yourself) visual
+# Python automation builder.
+
+# This project was created with the intent to help organisations setup
+# quick automations for complex tasks.
+
+# ♥ this project or want to help? Get involved at
+# https://github.com/smib98/DDIY
+
+`
+var myCodeMirror = CodeMirror(document.querySelector('.editor'), {
+	theme: 'slugbay',
+	indentUnit: 2,
+	tabSize: 4,
+	readOnly: true,
+	indentWithTabs: false,
+	firstLineNumber: 1,
+	lineNumbers: true,
+	viewportMargin: Infinity,
+	styleActiveLine: true,
+	dragDrop: false,
+	//allowDropFileTypes: [],
+	value: code,
+  	mode: 'python'
+});
+
+//var doc = myCodeMirror.getDoc();
+//var lastLine = doc.lastLine();
+//var lastLineContent = doc.getLine(lastLine);
+//var pos = { line: lastLine, ch: lastLineContent.length };
+//doc.replaceRange('hello\n', pos);
+
+if (localStorage.getItem('projectName')) {
+  var key = localStorage.getItem('projectName');
+    if (localStorage.getItem(key + "Code")) {
+      var doc = myCodeMirror.getDoc();
+      doc.setValue('');
+      var savedCode = localStorage.getItem(key + "Code");
+      if (savedCode) {
+        doc.setValue(savedCode);
+      }
+    }
+}
+
+
+document.getElementById("saveButton").addEventListener("click", function() {
+  var saveButton = document.getElementById("saveButton");
+  saveButton.innerHTML = "Saved!";
+  if (localStorage.getItem('projectName')) {
+    var key = localStorage.getItem('projectName');
+    var flowchartData = flowy.output();
+    localStorage.setItem(key, JSON.stringify(flowchartData));
+    var doc = myCodeMirror.getDoc();
+    var currentText = doc.getValue();
+    localStorage.setItem(key + "Code", currentText);
+  }
+  setTimeout(function() {
+    saveButton.innerHTML = "Save";
+  }, 3000);
 });
 
 var rightSwitch = document.getElementById('rightswitch');
@@ -405,51 +481,12 @@ rightSwitch.addEventListener('click', function() {
   rightSwitch.style.color = '#393c44';
   leftSwitch.style.backgroundColor = '#ffffff';
   leftSwitch.style.color = '#a3a3a3';
-  var closecard = document.getElementById('closecard');
-  var leftcard = document.getElementById('leftcard');
-  var leftcardWidth = leftcard.offsetWidth;
-  var leftcardLeft = leftcard.offsetLeft;
-  leftcard.style.left = '-' + leftcardWidth + 'px';
-  closecard.getElementsByTagName('img')[0].src = 'assets/closeright.svg';
-  closecard.style.display = 'none';
-  
-  var codeEditorDiv = document.getElementById('codeEditorDiv');
-  if (codeEditorDiv) {
-	console.log("exists");
-	codeEditorDiv.style.display = 'block';
-  } else {
-	console.log("doesn't exist");
-	var navigation = document.getElementById('navigation');
-	var height = navigation.offsetHeight;
-	var codeEditor = document.createElement('div');
-	codeEditor.style.backgroundColor = 'white';
-	codeEditor.id = 'codeEditorDiv';
-	codeEditor.style.width = '100%';
-	codeEditor.style.height = (window.innerHeight - height) + 'px';
-	codeEditor.zIndex = '9999';
-	document.body.appendChild(codeEditor);
-	codeEditor.style.position = 'absolute';
-	codeEditor.style.bottom = '0px';
-	var codearea = document.createElement('textarea');
-	codearea.id = 'codearea';
-	codearea.name = 'codearea';
-	codearea.rows = 25;
-	codearea.style.width = '100%';
-	codearea.style.height = '100%';
-	codearea.style.border = 'none';
-	codearea.style.outline = 'none';
-	codeEditor.appendChild(codearea);
-  }
-
+  document.getElementById("codeEditor").style.visibility = "visible";
 });
 leftSwitch.addEventListener('click', function() {
   leftSwitch.style.backgroundColor = '#fbfbfb';
   leftSwitch.style.color = '#393c44';
   rightSwitch.style.backgroundColor = '#ffffff';
   rightSwitch.style.color = '#a3a3a3';
-  closecard.style.display = 'block';
-  codeEditorDiv.style.display = 'none';
-  leftcard.style.left = '0px';
-  closecard.getElementsByTagName('img')[0].src = 'assets/closeleft.svg';
-  closecard.style.display = 'block';
+  document.getElementById("codeEditor").style.visibility = "hidden";
 });

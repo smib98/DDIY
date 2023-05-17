@@ -1,18 +1,35 @@
-# DDIY
-Dont Do It Yourself - Python Automation Builder
+# DDIY - Drag and Drop Python script builder
+A JavaScript based drag and drop workflow builder designed to assist with building Python Automation Scripts. This is to be used as part of a greater project im working on to allow everyday users to bring automation to their jobs in a similar way to how Power Automate works.
 
-# IMPORTANT
-This is a work in progress project. This is a not a serious project and im learning as I go, the code will be refined and optimised at a later point.
+This is only part of a bigger project i'm working on and uses Flowy.js at its core. Please feel free to re-use this however you wish.
 
-# DESCRIPTION OF PROJECT
-This is a simple locally run Python Script builder that runs in your web browser.
+## Important Information
+I know the JavaScript files formatting in this project is **GARBAGE** and can be simplified significantly. This project is not finished yet and will be optimised/refactored soon.
 
-# MOTIVATION OF PROJECT
-Seeing the need for a simple way to rapidly build and deploy Python automations for simple business tasks
+## Want To Help?
+If you have managed to fix any bugs, implimented new features or just have a cool suggestion, feel free to fork this repo or get in touch to conribute to this project.
 
-# TO DO
-• Make dragging actions to the canvas add code to the code editor pane.
-• Make any interaction with the canvas cause the current code to be saved (currently doesnt have save functionality)
+## How To Use
+1. Download this repo
+2. Open the index.html file in your favourite web browser.
+3. Done! your good to go, all running locally in your browser.
+
+# To-Do
+• Make dragging blocks to the canvas add code to the code editor pane instead of just the block name.
+• ~~Make any interaction with the canvas cause the current code to be saved (currently doesnt have save functionality)~~
+• Add auto save feature
 • Replace template actions etc, with real items
 • Make properties pane have relevant useful functionality.
-• Refine code
+• Refine and refactor code
+
+# Known Issues
+• Broken Zoom / Panning functionality
+• When the script re-imports a saved project, dragging a block already on the canvas breaks everything.
+
+## Credit
+**Show some love to Alyssa X for creating Flowy.js. Website, Github and online demo below.**
+```
+https://alyssax.com/
+https://alyssax.com/x/flowy/
+https://github.com/alyssaxuu/flowy
+```

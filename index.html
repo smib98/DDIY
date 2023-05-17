@@ -94,6 +94,8 @@ document.getElementById('delete').addEventListener('click', function() {
     if(gridItems[i].classList.contains('active')) {
       // Remove project from local storage
       var projectName = gridItems[i].querySelector('.project-name').textContent;
+      localStorage.removeItem(projectName);
+      localStorage.removeItem(projectName + "Code");
       var projects = JSON.parse(localStorage.getItem('projects'));
       for (var j = 0; j < projects.length; j++) {
         if (projects[j].projectName === projectName) {
