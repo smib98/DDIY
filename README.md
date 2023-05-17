@@ -15,16 +15,16 @@ If you have managed to fix any bugs, implimented new features or just have a coo
 3. Done! your good to go, all running locally in your browser.
 
 # To-Do
-• Make dragging blocks to the canvas add code to the code editor pane instead of just the block name.
-• ~~Make any interaction with the canvas cause the current code to be saved (currently doesnt have save functionality)~~
-• Add auto save feature
-• Replace template actions etc, with real items
-• Make properties pane have relevant useful functionality.
-• Refine and refactor code
+1. Make dragging blocks to the canvas add code to the code editor pane instead of just the block name.
+2. ~~Make any interaction with the canvas cause the current code to be saved (currently doesnt have save functionality)~~
+3. Add auto save feature
+4. Replace template actions etc, with real items
+5. Make properties pane have relevant useful functionality.
+6. Refine and refactor code
 
 # Known Issues
-• Broken Zoom / Panning functionality
-• When the script re-imports a saved project, dragging a block already on the canvas breaks everything.
+1. Broken Zoom / Panning functionality
+2. When the script re-imports a saved project, dragging a block already on the canvas breaks everything.
 
 ## Credit
 **Show some love to Alyssa X for creating Flowy.js. Website, Github and online demo below.**
